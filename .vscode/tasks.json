@@ -13,7 +13,7 @@
             "type": "shell",
             "command": "pytest tests",
             "group": "test",
-            "problemMatcher": ["$pytest"]
+            "problemMatcher": ["$python"]
         }
     ]
 }
