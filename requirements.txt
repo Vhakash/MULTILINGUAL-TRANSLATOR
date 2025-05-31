@@ -1,0 +1,12 @@
+# Core dependencies for multilingual-translator
+openai-whisper
+transformers
+sentencepiece
+torch
+gtts
+coqui-tts
+soundfile
+langdetect
+numpy
+scipy
+pytest
