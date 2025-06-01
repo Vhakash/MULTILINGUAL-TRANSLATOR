@@ -10,3 +10,5 @@ langdetect
 numpy
 scipy
 pytest
+noisereduce
+soundfile
