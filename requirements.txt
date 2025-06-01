@@ -11,4 +11,4 @@ numpy
 scipy
 pytest
 noisereduce
-soundfile
+sounddevice

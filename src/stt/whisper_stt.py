@@ -6,6 +6,7 @@ from scipy.io.wavfile import write
 import numpy as np
 import noisereduce as nr
 import soundfile as sf
+from src.translation.marian_translator import Translator
 
 SUPPORTED_EXTENSIONS = [".wav", ".mp3", ".m4a", ".flac", ".aac", ".ogg"]
 
@@ -70,5 +71,15 @@ if __name__ == "__main__":
         if not os.path.exists(path):
             print("❌ File not found.")
             exit()
-    transcribe_audio(path)
+    text, detected_lang = transcribe_audio(path)
+
+    translate_choice = input("🌍 Translate output? (y/n): ").strip().lower()
+    if translate_choice == "y":
+        target_lang = input("Enter target language code (e.g., 'fr', 'de', 'hi'): ").strip()
+        try:
+            translator = Translator(source_lang=detected_lang, target_lang=target_lang)
+            translated_text = translator.translate(text)
+            print(f"🈯 Translated ({detected_lang} ➡ {target_lang}):\n{translated_text}")
+        except Exception as e:
+            print(f"❌ Translation failed: {e}")
 

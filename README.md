@@ -18,8 +18,8 @@ A modular Python project for speech-to-text, translation, and text-to-speech wor
 
 ## Audio Enhancement
 
-- The project now uses automatic noise reduction to improve transcription quality.
-- Before transcription, all audio (recorded or pre-recorded) is processed to reduce background noise using the `noisereduce` and `soundfile` libraries.
+- The project uses automatic noise reduction to improve transcription quality.
+- All audio (recorded or pre-recorded) is processed to reduce background noise using the `noisereduce` and `soundfile` libraries.
 - To install all dependencies, make sure your `requirements.txt` includes:
   ```
   noisereduce
@@ -41,3 +41,27 @@ python -m src.stt.whisper_stt
 
 - Make sure your microphone is connected and configured as the default input device on your system.
 - The recording duration can be adjusted in the code (default is 5 seconds).
+
+## Transcription and Translation
+
+- You can transcribe from a pre-recorded audio file or record new audio.
+- After transcription, you will be prompted to translate the output to a target language of your choice.
+- The translation uses MarianMT models from Hugging Face. Ensure you have internet access and, if needed, a valid Hugging Face token for private/gated models.
+
+**Example usage:**
+```sh
+python -m src.stt.whisper_stt
+# Choose [1] Transcribe from file when prompted
+# Enter the path to your audio file
+```
+
+- If you want to translate, enter `y` when prompted and provide the target language code (e.g., `fr` for French, `de` for German, `hi` for Hindi).
+
+---
+
+**Note:**  
+If you need to use private or gated Hugging Face models, generate a token from [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and log in using:
+```sh
+huggingface-cli login
+```
+Paste your token when prompted.
