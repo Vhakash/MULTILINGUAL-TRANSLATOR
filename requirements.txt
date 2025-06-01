@@ -10,5 +10,3 @@ langdetect
 numpy
 scipy
 pytest
-sounddevice   # For recording audio from microphone
-pydub
