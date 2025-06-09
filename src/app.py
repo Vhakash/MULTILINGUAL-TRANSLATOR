@@ -5,6 +5,9 @@ from src.tts.tts_engine import text_to_speech
 import tempfile
 import os
 import warnings
+from src.translation.utils import log_translation
+
+
 warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="AI Translator", page_icon="🗣️")
@@ -51,6 +54,9 @@ if audio_file:
                 st.error(f"❌ Translation failed: {e}")
                 translated_text = None
 
+        # Log translation
+        log_translation(text,translated_text, detected_lang, target_lang)
+
         # TTS
         if translated_text:
             with st.spinner("Generating Speech..."):
@@ -65,3 +71,12 @@ if audio_file:
     st.audio(tmp_path)
 else:
     st.info("Please upload an audio file to begin.")
+
+import streamlit as st
+import os
+
+st.markdown("---")
+st.header("🧠 Download Translation Log as Flashcards")
+if os.path.exists("samples/translation_log.csv"):
+    with open("samples/translation_log.csv", "rb") as f:
+        st.download_button("📥 Download Flashcards (CSV)", f, file_name="flashcards.csv")
