@@ -82,13 +82,9 @@ if __name__ == "__main__":
             translator = Translator(source_lang=detected_lang, target_lang=target_lang)
             translated_text = translator.translate(text)
             print(f"🈯 Translated ({detected_lang} ➡ {target_lang}):\n{translated_text}")
-
-            tts_choice = input("🔈 Convert translation to speech? (y/n): ").strip().lower()
-            if tts_choice == "y":
-                from src.tts.tts_engine import text_to_speech  # or your actual TTS import
-                text_to_speech(translated_text, lang=target_lang)
         except Exception as e:
             print(f"❌ Translation failed: {e}")
+            translated_text = None
 
 
 
