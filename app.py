@@ -1,5 +1,5 @@
 import streamlit as st
-from stt.whisper_stt import transcribe_audio
+from stt.whisper_stt_cloud import transcribe_audio
 from translation.marian_translator import Translator
 from tts.tts_engine import text_to_speech
 import tempfile
@@ -15,7 +15,7 @@ st.set_page_config(page_title="AI Translator", page_icon="🗣️")
 st.title("🎙️ Multilingual Speech Translator")
 
 # 1. Upload audio
-st.header("1. Upload or Record Audio")
+st.header("1. Upload Audio")
 audio_file = st.file_uploader("Upload audio (mp3, wav, m4a, etc)", type=["mp3", "wav", "m4a", "flac", "aac", "ogg"])
 
 # 2. Translation settings
@@ -54,6 +54,8 @@ if audio_file:
                 st.error(f"❌ Translation failed: {e}")
                 translated_text = None
 
+        # Ensure the directory exists
+        os.makedirs("samples", exist_ok=True)  
         # Log translation
         log_translation(text,translated_text, detected_lang, target_lang)
 
@@ -71,9 +73,6 @@ if audio_file:
     st.audio(tmp_path)
 else:
     st.info("Please upload an audio file to begin.")
-
-import streamlit as st
-import os
 
 st.markdown("---")
 st.header("🧠 Download Translation Log as Flashcards")
