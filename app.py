@@ -1,11 +1,11 @@
 import streamlit as st
-from src.stt.whisper_stt import transcribe_audio
-from src.translation.marian_translator import Translator
-from src.tts.tts_engine import text_to_speech
+from stt.whisper_stt import transcribe_audio
+from translation.marian_translator import Translator
+from tts.tts_engine import text_to_speech
 import tempfile
 import os
 import warnings
-from src.translation.utils import log_translation
+from translation.utils import log_translation
 
 
 warnings.filterwarnings("ignore")
